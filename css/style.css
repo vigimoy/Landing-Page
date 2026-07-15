@@ -18,6 +18,7 @@
   --font-bold: 700;
 
   /* Spacing */
+  --spacing-xl: 1rem;
   --spacing-4xl: 2rem;
   --spacing-5xl: 2.5rem;
   --spacing-6xl: 3rem;
@@ -98,15 +99,6 @@ nav ul li a:hover {
   opacity: 0.9;
 }
 
-.hamburger {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--color-white);
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
 /* Hero Section */
 #hero {
   display: flex;
@@ -117,8 +109,8 @@ nav ul li a:hover {
   height: 750px;
   background: linear-gradient(
     180deg,
-    var(--color-black) 17.55%,
-    rgba(33, 10, 94, 0.3) 136.21%
+    var(--color-black) 10.91%,
+    rgba(33, 10, 94, 0.3) 100%
   );
   overflow: hidden;
   position: relative;
@@ -161,6 +153,14 @@ nav ul li a:hover {
   font-weight: var(--font-semibold);
   letter-spacing: -0.03em;
   color: var(--color-white);
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  color: var(--color-white);
+  font-size: 1.5rem;
+  user-select: none;
 }
 
 .hero-image {
@@ -381,7 +381,7 @@ form {
   gap: var(--spacing-4xl);
 }
 
-label {
+label:not(.hamburger) {
   font-size: 14px;
   font-weight: var(--font-medium);
   color: var(--color-white);
@@ -432,6 +432,15 @@ footer {
   color: var(--color-gray-500);
 }
 
+/* Hamburger Menu */
+.menu-toggle {
+  display: none;
+}
+
+.btn-contact-mobile {
+  display: none;
+}
+
 /* TABLET (768px - 1024px) */
 @media (max-width: 1024px) {
   nav {
@@ -461,5 +470,206 @@ footer {
 
   .team-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* MOBILE (< 768px)*/
+@media (max-width: 768px) {
+  /* Header */
+  nav {
+    padding: 24px 16px;
+    height: 64px;
+  }
+
+  .nav-links,
+  .btn-contact {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--color-white);
+    user-select: none;
+  }
+
+  .hamburger::before {
+    content: '☰';
+  }
+
+  .menu-toggle:checked ~ .hamburger::before {
+    content: '✕';
+  }
+
+  .menu-toggle:checked ~ .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-black);
+    padding: 80px 16px 40px;
+    gap: 12px;
+    z-index: 99;
+  }
+
+  .menu-toggle:checked ~ .nav-links li a {
+    font-size: 14px;
+    color: var(--color-white);
+    padding: 8px 0;
+    display: block;
+  }
+
+  .menu-toggle:checked ~ .nav-links .btn-contact-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    background: var(--color-primary);
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: var(--font-semibold);
+    color: var(--color-white);
+    margin-top: 12px;
+  }
+
+  .menu-toggle:checked ~ .hamburger {
+    position: fixed;
+    top: 20px;
+    right: 16px;
+    z-index: 100;
+    font-size: 1.2rem;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  /* Hero */
+  #hero {
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    height: auto;
+    min-height: 720px;
+    gap: 24px;
+  }
+
+  .hero-content {
+    width: 100%;
+    align-items: flex-start;
+    text-align: left;
+    gap: 24px;
+  }
+
+  .hero-content h1 {
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+    line-height: 30px;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+
+  .hero-image {
+    position: absolute;
+    left: 12px;
+    top: 334px;
+    width: 308px;
+    height: auto;
+  }
+
+  .hero-image img {
+    width: 308px;
+    height: auto;
+  }
+
+  /* Who We Are */
+  #who-we-are {
+    padding: 40px 20px;
+  }
+
+  #who-we-are h2 {
+    font-size: 28px;
+  }
+
+  #who-we-are p {
+    font-size: 18px;
+    font-weight: var(--font-semibold);
+  }
+
+  /* What We Do */
+  #what-we-do {
+    padding: 40px 16px;
+  }
+
+  .what-we-do-text h2 {
+    font-size: 28px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .services-card {
+    padding: 16px;
+  }
+
+  /* Our Work */
+  #our-work {
+    padding: 40px 20px;
+  }
+
+  .our-work-text h2 {
+    font-size: 28px;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* Meet the Team */
+  #team {
+    padding: 40px 20px;
+  }
+
+  .team-text h2 {
+    font-size: 28px;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .team-card img {
+    width: 160px;
+    height: 160px;
+  }
+
+  /* Collaborate */
+  #collaborate {
+    padding: 40px 20px;
+  }
+
+  .collaborate-text h2 {
+    font-size: 28px;
+  }
+
+  /* Footer */
+  footer {
+    padding: 24px 8px;
+    font-size: 12px;
   }
 }
